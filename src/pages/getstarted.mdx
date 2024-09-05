@@ -1,0 +1,49 @@
+import { Tag } from "../components/Tag"
+
+# Getting started
+
+## Gameplan approach
+There are two primary approaches to learning: the Gameplan and the Trainer. {{ className: 'lead' }}
+
+**Hand Review** <br/>
+Select a hand, find a similar flop, and review your hand. If your strategy aligns with the PS-Strategy, great! Then, incorporate the tendencies of the pool or player, such as "low bluff frequency," and check if your action is still the best strategy. Quickly, a bluff-catching hand 
+
+```
+(with EV(Call) - EV(Fold) = 0) can shift to EV(Fold) >> EV(Call)
+```
+
+**Range-EV Distribution** <br />
+Understand how well various runouts hit the ranges. For beginners, categorize runouts into three clusters:
+
+```
+Good Runout:      Range-EV increased relative to the last action
+Neutral Runout:   Range-EV unchanged relative to the last action
+Bad Runout:       Range-EV decreased relative to the last action
+```
+
+Correctly categorizing runouts is fundamental to understanding poker and correlates with your future strategy and your opponent's choices.
+
+**Stable vs. Unstable States** <br />
+Stable states have low EV differences between actions, while unstable states have high EV differences. Understand the science behind it and determine which part of the game tree to select to enter these situations. This reduces variance dramatically.
+
+**Runout-Clustering** <br />
+Understand the degree of simplification and the structure of clusters. Analyze how simplification is determined by past actions, the board, and your range. Study the clusters' structure to comprehend poker principles better.
+
+**The Simplifier** <br />
+Discover the relevance of specific actions for any situation and understand the game plan of certain player types. This helps to adapt more accurately.
+
+**Understanding Tree Complexity** <br />
+Each action has a different complexity level, and complexity is proportional to the number and intensity of mistakes players make. Forcing your opponent to play in parts of the tree where you have an edge increases your win rate.
+
+**Range-EV for Different Flops** <br />
+Understand the Range-EV for various flop structures to get an overview of the flop strategy.
+
+**Made-Hand-Distribution** <br /> 
+Learn how the range structure correlates with actions, which is a fundamental pillar of understanding poker.
+
+## Practice approach
+The practice mode provides an opportunity to receive immediate feedback on your current Gameplan. If you don't have specific information about your weaknesses, such as a "poor winrate in Call to `3Bet` situations," I recommend starting with the most crucial spots: `BUvsBB` and `BUvsSB`. Then, gradually add more spots to your training.
+
+The "Practice stats" offers an overview of your winrates based on the situation and the bot's game style. A practical approach is to focus on training the spots where you have the lowest winrate.
+
+Keep in mind that this Gameplan is the first and only one to be fully solved without any abstractions (i.e., information loss), resulting in larger EV gaps between correct and incorrect decisions. Consequently, having a winrate greater than negative five big blinds per 100 hands is already considered strong, whereas trainers from other software might deem it merely satisfactory."

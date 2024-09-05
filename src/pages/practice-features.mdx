@@ -1,0 +1,57 @@
+import { LastVsBest } from '../components/Images'
+import { BlunderMessage } from '../components/Images'
+import { HandHistory } from '../components/Images'
+import { SessionStats } from '../components/Images'
+
+# Features of Practice mode
+
+## Bot playstyles
+
+Choose from two human-like logics, a tight or an aggressive gameplan, and watch your skills soar. Simply select your preferred play-style via the button on the training screen and watch the Bot adapt.
+
+**Tight playstyle** <br />
+With the tight Gameplan, the Bot will play passively, only opting for more aggressive actions if the expected value (EV) remains high.
+
+**Aggressive playstyle** <br />
+On the other hand, the aggressive Gameplan will see Neura play more aggressively, all while keeping the focus on maximizing EV.
+
+**Tight vs. Aggressive** <br />
+A hand for the Bot is with `35%` in the `call` action and `65%` in the `raise` action. This means that the EV difference between call and raise is approximately 0bb. Using the tight Gameplan, the Bot's strategy will change to `100%` `call`, while the aggressive Gameplan will choose `100%` `raise`.
+
+## Last vs. Best {{ className: 'lead' }}
+
+<LastVsBest />
+
+As you make decisions during training, Neura Bot measures the expected value (EV) of each move and compares it to the highest EV decision. This provides immediate feedback on your play and helps you identify areas for improvement.
+
+## Hand history
+
+<HandHistory />
+
+## Session overview
+
+<SessionStats />
+
+### Blunders
+
+<BlunderMessage />
+
+## Statistics overview
+
+You can easily track and visualize your decisions in the "statistics" sheet, which saves every decision in our database. This sheet provides an overview of your performance at a specific spot, and you can use the filter function to refine the results based on specific positions, IP/OOP, x-Bet, Cash Game/MTT/HU, or stack sizes. You can apply multiple filters to get more detailed information about your performance and identify potential leaks.
+
+## Spot selection
+
+Choose from a range of cash games, heads-up, or multi-table tournaments to train the spots you want to improve on.
+Whether you're looking to improve your preflop or postflop play, our Bot has got you covered. Simply select your preferred training mode and get started.
+
+**Available training modes** <br />
+The practice mode provides a wide range of game types to choose from.
+You can select Cash-game with a 100bb stack size and play through various scenarios like Preflop, 2Bet, 3Bet, and 4Bet.
+Additionally, MTTs with stack sizes ranging from 10bb to 75bb are available, with additional scenarios like Limp-Call and Limp-Raise-Call, as well as the same Preflop, 2Bet, 3Bet, and 4Bet options.
+There is also a dedicated mode for heads-up play, featuring 100bb stack size and the same Preflop, 2Bet, 3Bet, and 4Bet scenarios.
+
+## Switch mode
+
+You can switch between the actual training situation and the gameplan mode whenever you like. This means that while you're playing, you can also take a closer look at the situation in a more strategic way.
+By doing this, you'll get a better understanding of how the current situation fits into your overall strategy and improve your decision-making skills. It'll make learning more effective and help you make better choices in the game, which in turn will help you to progress and succeed.

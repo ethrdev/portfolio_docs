@@ -1,0 +1,26 @@
+import { BotStyles } from '../components/Images'
+import { PracticeMode } from '../components/Images'
+
+# Concepts
+
+You can practice your game plan by playing against our GTO-Bot in the gamification mode. {{ className: 'lead' }}
+
+<PracticeMode />
+
+The bot will play the GTO-Strategy, and you can measure the differences in strategy
+and EV between your chosen action and the bot's action. This will help you directly
+measure your performance.
+
+## Exploitative GTO bot
+
+You can choose between two different play styles for our GTO bot: a tight game plan or an aggressive game plan. This choice can be made through the button on the training screen. If you choose the tight game plan, the bot will tend to make more passive actions as long as it doesn't lead to significant EV loss. On the other hand, if you select the aggressive game plan, the bot will prefer more aggressive actions in the same situations.
+
+<BotStyles />
+
+### Example:
+
+You can practice your game plan using our gamification mode by playing against our GTO-Bot. The bot plays the GTO-Strategy and can measure the strategy and EV differences between your chosen action. This allows you to directly measure your performance. We have developed two human-like logics for the bot. One has a tight game plan, and the other one has an aggressive game plan. You can select the play style using the button on the training screen. By choosing the tight game plan, our bot will prefer more passive actions if it does not lose significant EV. If you select the aggressive game plan, it will prefer more aggressive actions under the same conditions. A hand for our bot has `35%` in the `call` action and `65%` in the `raise` action. It means the EV-Difference between call and raise has to be approximately zero big blinds (0bb). Using the tight game plan of the bot will transform its strategy to `100%` `call`, while the aggressive game plan will choose `100%` `raise`.
+
+## Usage of training mode
+
+You can select your preferred spot on the selection sheet to start training. Whether it's for Cash Game, HU, or MTT, you have the option to train Preflop, Postflop, or both. Once you have chosen the spot and type of training, the decisions you make in the training sheet will be measured in EV and compared to the decision with the highest EV. The trainer is connected to the Gameplan, allowing you to study the spot in 'Gameplan mode' at any moment during your training.

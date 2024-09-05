@@ -1,0 +1,26 @@
+# Concepts Behind Game Plans
+
+No-Limit Texas Hold'em Poker presents a complex landscape with over ten to the power of 165 different game states. To put this in perspective, this number is greater than the total count of atoms in the universe, which is approximately ten to the power of 80. In order to calculate a Game Theory Optimal game plan of this magnitude, a machine with ten to the power of 49 yottabytes of RAM would be required.
+
+To address this challenge with existing computing power, various abstractions are used to simplify the original game. These abstractions have an impact on the difference between the game plan's Expected Value and the maximum possible Expected Value, referred to as Expected Value loss. Abstractions can range from causing no Expected Value loss to resulting in significant Expected Value loss. All Game Theory Optimal game plans calculated so far have included abstractions that cause considerable Expected Value loss. The question arises: how reliable are these strategies when the constraints themselves incur Expected Value loss?
+
+Over the past four years, we have been working on developing a Game Theory Optimal game plan that minimizes the impact of abstractions that would compromise strategy quality.
+
+## Pre and posflop separation
+
+When you calculate preflop ranges, you need to make various assumptions such as the bet size subset, number of flops, and runouts. These factors can significantly impact the quality of your preflop ranges and affect the Expected Value of each hand. To solve this problem, we have connected the pre and postflop game plans without using any postflop game abstractions like limited sizing options or board buckets. For instance, if you only allow a small preflop `3-bet` size and large postflop raise sizes, a preflop solver is more likely to trap high equity hands like `KK` / `AA` against open raises. It is essential to determine optimal bet sizing subsets in relation to all possible postflop scenarios to avoid significant Expected Value cost.
+
+## Custom postflop bet size subset
+
+Different hands have their highest Expected Value for a specific action, but many hands can maintain decent Expected Value when considering a different action. This is directly related to the number of possible future trees, as well as stack size, SPR, and range size. Another factor is the gap between each potential bet sizing. To help you find the best strategy for every scenario, we have included bet subsets of `40%` / `55%` or `40%` / `80%` of the pot in our game plan. This allows every hand in your range to find its maximum Expected Value action. We select between 1 to 7 actions at each node to optimize your strategy.
+
+Eliminating one high Expected Value loss abstraction significantly increases the computer RAM needed for calculation. For example, connecting the pre/postflop game plan with a simple bet sizing subset requires about 1600 GB of RAM. This makes it impossible to calculate a "maximum Expected Value" Game Theory Optimal game plan (low-Expected Value loss for all abstractions) using a home computer or a typical virtual machine.
+
+In conclusion, our approach aims to minimize the impact of abstractions on the quality of Game Theory Optimal game plans by connecting pre and postflop game plans and allowing you to define your own bet size subsets for postflop play. Our game plan provides a more accurate and effective strategy that can adapt to various game scenarios, helping you make the most of your poker game.
+
+**References**:
+
+- [1] [arxiv](https://arxiv.org/pdf/1510.08578.pdf)
+- [2] [cs.ualberta](https://poker.cs.ualberta.ca/publications/2013-techreport-nl-size.pdf)
+- [3] [cs.cmu.edu](https://www.cs.cmu.edu/~noamb/papers/15-AAMAS-Tartanian7.pdf)
+- [4] [paper.nips](https://papers.nips.cc/paper/2017/file/7fe1f8abaad094e0b5cb1b01d712)

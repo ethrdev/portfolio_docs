@@ -1,0 +1,45 @@
+# Matrix Normalizing
+
+To improve your gameplay, you can adjust the weight of each hand combination in the matrix. This will optimize your performance and help you make better decisions. The color space in each cell is proportional to the "weight times frequency" of the cell, and normalization can be used to change the color space for each cell. Normalizing the matrix will allow you to analyze the strategies for each hand combination more easily and make improvements to your overall game.
+
+## Relative
+
+```json {{ title: 'Relative' }}
+weight * frequency
+```
+
+This displays the "raw" data shown in the matrix.
+
+## Absolute
+
+```json {{ title: 'Absolute' }}
+(weight / weight) * frequency = frequency
+```
+
+The information of weight is "removed," leading to the display of only the frequency, which always ranges between 0-100%.
+
+## Normalized
+
+```json {{ title: 'Normalized' }}
+max f(weight * frequency) transformed to 100%
+```
+
+1. only weight is allowed to change by a factor of "x."
+2. Each cell will be multiplied by x.
+
+### Example
+
+The hand combination `QQ` has the maximum value of:
+
+```
+weight * frequency = 0.5 * 0.5 = 0.25. <br/>
+Using (I): 0.5 * x = 1 -> x = 2
+```
+
+Keep in mind that only the weight is allowed to change.
+
+```
+Using (II): all other hand combinations are multiplied by 2 as well.
+```
+
+By normalizing the matrix, you can more easily view and analyze the strategies for each hand combination. This approach helps you make better decisions and improve theyourir overall game.

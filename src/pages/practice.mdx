@@ -1,0 +1,21 @@
+# Practice mode
+
+You can practice your Gameplan by playing against our GTO-Bot in gamification mode. The bot plays the GTO-Strategy and measures the strategy and EV differences between your chosen action. This allows you to directly measure your performance. {{ className: 'lead' }}
+
+## Exploitative bot
+
+We've created two human-like logics for our GTO bot, one with a tight Gameplan and the other with an aggressive Gameplan. You can choose the play-style by clicking the button on the training screen. If you choose the tight Gameplan, the bot will prefer more passive actions as long as she doesn't lose significant EV. On the other hand, if you choose the aggressive Gameplan, she'll opt for more aggressive actions under the same conditions.
+
+## Example:
+
+When the bot is dealt a hand, it has a `call` action frequency of `35%` and a `raise` action frequency of `65%`. This means that the EV-Difference between the two actions is approximately zero big blinds (0bb). If the user selects bot's tight Gameplan, it's strategy will consist of `100%` `call`, while the aggressive Gameplan will result in `100%` `raise`.
+
+## Usage of training mode
+
+In the selection sheet, you can choose the spot you want to train in for Cashgame, HU, and MTT. Once you've selected the spot, you can choose between Preflop, Postflop, or Preflop+Postflop training.
+
+In the training sheet, every decision you make is measured in EV and compared to the decision with the highest EV. The trainer is directly connected to the Gameplan, so you can switch to "Gameplan-mode" at any time to study the spot you're currently training.
+
+## Statistics overview
+
+In our "statistics" sheet, every decision you make is saved, tracked, and visualized. This provides an overview of your performance at a spot. To get more clarification about general performance and potential leaks, you can use the filter function. You can filter specific positions, IP/OOP, x-Bet, Cashgame/MTT/HU, or specific stack sizes. You can use as many filters as you prefer.

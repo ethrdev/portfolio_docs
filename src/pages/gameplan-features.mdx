@@ -1,0 +1,183 @@
+import { RangeVsRange } from '../components/Images'
+import { MHD } from '../components/Images'
+import { RunoutDistribution } from '../components/Images'
+import { MacroAnalysis } from '../components/Images'
+import { EquityToggle } from '../components/Images'
+import { Simplifier } from '../components/Images'
+import { SimplifierExampleOne } from '../components/Images'
+import { SimplifierExampleTwo } from '../components/Images'
+import { ClusteringHigh} from '../components/Images'
+import { ClusteringLow} from '../components/Images'
+import { ClusteringMiddle} from '../components/Images'
+import { PracticeMode } from '../components/Images'
+
+# Features of Gameplan mode
+
+## Range versus Range View
+
+With the Range versus Range view, you can easily see all the information for a given situation in your Gameplan on a single sheet. This will help you study the spot more effectively and navigate through it using action buttons. You'll be able to view the strategies for each player in a two-by-two matrix, which correlates with your selected actions.
+
+<RangeVsRange></RangeVsRange>
+
+### Matrix Normalizing
+
+To improve your gameplay, you can adjust the weight of each hand combination in the matrix. This will optimize your performance and help you make better decisions. The color space in each cell is proportional to the "weight times frequency" of the cell, and normalization can be used to change the color space for each cell. Normalizing the matrix will allow you to analyze the strategies for each hand combination more easily and make improvements to your overall game.
+
+```json {{ title: 'Relative' }}
+weight * frequency
+```
+
+This displays the "raw" data shown in the matrix.
+
+```json {{ title: 'Absolute' }}
+(weight / weight) * frequency = frequency
+```
+
+The information of weight is "removed," leading to the display of only the frequency, which always ranges between 0-100%.
+
+```json {{ title: 'Normalized' }}
+max f(weight * frequency) transformed to 100%
+```
+
+1. only weight is allowed to change by a factor of "x."
+2. Each cell will be multiplied by x.
+
+The hand combination `QQ` has the maximum value of:
+
+```
+weight * frequency = 0.5 * 0.5 = 0.25. <br/>
+Using (I): 0.5 * x = 1 -> x = 2
+```
+
+Keep in mind that only the weight is allowed to change. 
+
+```
+Using (II): all other hand combinations are multiplied by 2 as well.
+```
+
+By normalizing the matrix, users can more easily view and analyze the strategies for each hand combination. This approach helps players make better decisions and improve their overall game.
+
+### Equity Toggle
+
+Activate the equity toggle to get a quick overview of which parts of the ranges connect well with the board.
+
+<EquityToggle />
+
+## Made-Hand Distribution
+
+With the Made-Hand Distribution feature, you can understand which hands or hand classes are best to hold in certain situations. The 18 different hand groups are classified based on their properties, which are influenced by the board structure. This way, you can link the perfect strategy for a specific spot with the hand class, such as having a flush draw, set, etc. The feature has two different distributions:
+
+- One distribution shows how often a hand group takes a specific action, displayed by the color intensity of a hand class bar.
+- The other distribution displays the likelihood of having a specific hand class in your current range, giving you a better understanding of the type of hand class in a particular action and its likelihood.
+
+<MHD />
+
+## Runout Distribution Graph
+
+When you use the Runout Distribution feature, you can see how well a runout hits your range or your opponent's range. The feature includes a table and a graph that show the expected value (EV). The graphs for each player are anti-symmetric due to their relationship.
+
+```
+Range-EV(Player1) + Range-EV(Player2) = Pot - Rake
+```
+
+<RunoutDistribution />
+
+Let me help you rephrase that. "If you look at the petrol graph, it represents the In-Position `IP` Player and often displays a minimum value when the runout is a spade. This indicates that the `IP` Player has fewer flush draws compared to the Out-of-Position `OOP` Player. Specifically, cards `9` - `A`, particularly `Q` and `K`, have a significant impact on their range. This information is crucial in determining the strategy for the next street and should be understood."
+
+
+## Macro-Analysis
+
+You can use the Macro-Analysis feature to gain insight into key metrics like Range-EV, strategy, EQ, EQ-Realization, and more, across all flops for a pre-selected spot. You can easily compare specific values, such as strategies for different flops, to better understand your gameplay.
+
+You can filter by "Suitedness" and "Pairing" to sort values from high to low or vice versa, making it easy to identify the best and worst flops for you. Average values are displayed at the top of the table for easy reference.
+
+By using the Macro-Analysis feature, you can quickly learn:
+
+Which types of flops are more suitable for using a big bet or checking back most of the time.
+How well various flops are connected to your range or your opponent's range.
+How Range-EV is related to your preferred strategy.
+Overall, the Macro-Analysis feature is a valuable tool for you to analyze your gameplay and make better decisions based on key metrics and comparisons.
+
+<MacroAnalysis />
+
+## Simplifier
+
+The Simplifier enables users to modify the Game Theory Optimal (GTO) strategy by adding or removing actions. This manipulation directly impacts the player's Range-EV (Expected Value), which is measured. It helps users understand how much they can simplify their game plan in specific situations.
+
+<Simplifier />
+
+Our Simplification algorithm is designed to minimize the Expected Value loss when removing an action or maximize the Expected Value gain when adding one. Unlike the Nash algorithm, our algorithm does not require the modified strategy to be balanced. When you remove an action, the hands from that action will move to the alternative action with the second-highest Expected Value.
+
+### Raw GTO-Strategy
+
+<SimplifierExampleOne />
+
+In this example, you can see that removing raising actions can be a good way to simplify the strategy, even if the `R 17.4` action has a frequency of `14.5%`. Let's try removing the raising actions and see what happens.
+
+### Manipulated GTO-Strategy
+
+<SimplifierExampleTwo />
+
+After removing raising actions, the new strategy only includes folding and calling actions. There is no significant loss in Range-EV. However, removing another action would cause a significant decrease in Range-EV.
+
+If we return to the original GTO-Strategy and directly remove the call node, while keeping the raise actions available, we would only experience a loss of 2bb/100 with this strategy. There are many ways to simplify the Game Theory Optimal game plan, and the Simplifier algorithm can help you achieve that.
+
+## Runout-Clustering
+
+By simplifying your strategy, you can reduce errors and increase your win rate. Runout clustering is a way to simplify the strategy by reducing the number of different strategies in the game plan. In a single spot, there would be 2,352 different turn and river strategies needed for each strategy node, which would result in more than 16 million different strategies. However, it's important to keep the game plan as simple as possible without compromising the win rate.
+
+The simplification process compares each runout to every other runout and defines a strategy based on possible frequencies weighted by a parameter representing the relative value between different lines. The value of this parameter depends on the available lines and the significance of differences between them. The result is a quantity called delta, which measures the strategy difference between two different runouts.
+
+Delta includes all runouts for all possible lines for all involved players and is used through a two-dimensional clustering method. The goal is to find the minimum number of different clusters without losing range-EV for any player. Delta is interpreted as the "strategy failure parameter," and if delta equals zero for eight different runouts, only one strategy is needed for these runouts.
+
+The outcome of runout clustering is that the forty-nine turn runouts (forty-eight for the river) become "grouped" or "clustered." Each cluster has a representation card with the smallest strategy difference between all cards in the cluster, resulting in each player having their own Runout-Clustering, which may differ significantly from other players in the same situation.
+
+Here are three examples with different levels of simplification:
+
+### High-Level Simplification:
+
+```
+Game type:      Cash
+Stack size:     100bb
+Positions:      MP vs. BU
+Preflop:        3Bet
+Flop:           As 5s 4s
+Flop actions:   MP (Check) | BU (Bet 40%) | MP (Call)
+```
+Strategy for BU simplifies from 49 to 2 different strategies on the turn without any EV loss! (~96% simplified)
+
+<ClusteringHigh />
+
+### Medium-Level Simplification:
+
+```
+Game type:      MTT
+Stack size:     25bb
+Positions:      BU vs. BB
+Preflop:        SRP
+Flop:           Ks 9d 8d
+Flop actions:   BB (Check) | BU (Bet 25%) | BB (Call)
+Turn card:      5h
+Turn actions:   BB (Check) | BU (Check)
+```
+Strategy for BU simplifies from 49 to 12 different strategies on the river (~70% simplified)
+
+<ClusteringMiddle />
+
+### Low-Level Simplification:
+
+```
+Game type:      Cash
+Stack size:     100bb
+Positions:      BU vs. BB
+Preflop:        2Bet
+Flop:           As Td 8d
+Flop actions:   BB (Check) | BU (Check)
+```
+Strategy for BB simplifies from 49 to 21 strategies on the turn (57% simplified)
+
+<ClusteringLow />
+
+When analyzing the Runout-Clustering feature, it was discovered that two different cards within a cluster could have the same strategy, even if they have a significant difference in their Runout-EVs. This suggests that there are multiple reasons for having a particular strategy.
+
+It's worth noting that the Runout-Clustering calculation only needs to be performed once for each user as the results are saved on our backend. By understanding the different cluster structures and analyzing them, you can gain a new perspective on poker.

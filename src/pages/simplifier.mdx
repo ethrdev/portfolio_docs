@@ -1,0 +1,25 @@
+import { Simplifier } from '../components/Images'
+import { SimplifierExampleOne } from '../components/Images'
+import { SimplifierExampleTwo } from '../components/Images'
+
+# Simplifier overview
+
+The Simplifier enables you to modify the Game Theory Optimal (GTO) strategy by adding or removing actions. This manipulation directly impacts your Range-EV (Expected Value), which is measured. It helps you understand how much you can simplify your game plan in specific situations.
+
+<Simplifier />
+
+Our Simplification algorithm is designed to minimize the Expected Value loss when removing an action or maximize the Expected Value gain when adding one. Unlike the Nash algorithm, our algorithm does not require the modified strategy to be balanced. When you remove an action, the hands from that action will move to the alternative action with the second-highest Expected Value.
+
+## Raw GTO-Strategy
+
+In this example, you can see that removing raising actions can be a good way to simplify the strategy, even if the `R 17.4` action has a frequency of `14.5%`. Let's try removing the raising actions and see what happens.
+
+<SimplifierExampleOne />
+
+## Manipulated GTO-Strategy
+
+After removing raising actions, the new strategy only includes folding and calling actions. There is no significant loss in Range-EV. However, removing another action would cause a significant decrease in Range-EV.
+
+If you return to the original GTO-Strategy and directly remove the call node, while keeping the raise actions available, you would only experience a loss of 2bb/100 with this strategy. There are many ways to simplify the Game Theory Optimal game plan, and the Simplifier algorithm can help you achieve that.
+
+<SimplifierExampleTwo />
